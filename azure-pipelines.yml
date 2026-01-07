@@ -1,0 +1,19 @@
+trigger:
+- main
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'   # Uses free Microsoft-hosted agent
+
+steps:
+- script: echo Hello from Azure DevOps Pipeline!
+  displayName: 'Say Hello'
+
+- script: ls -R
+  displayName: 'List repository files'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
